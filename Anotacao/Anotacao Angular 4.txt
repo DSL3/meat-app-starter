@@ -1,0 +1,2578 @@
+
+Angular 4
+	
+  - Pode ser em desenvolvido 4
+     - Javascript
+     - ES5
+        Não precisa de compilador
+	não modulos e nem tipo compativeis
+     -ECScript2015
+	Possui Classes Modulos mas não possui tipos
+	Não tem compilador e teria que utilizar o babel
+        Nem todo brwoser suporta 100% essa verão
+     -type Script
+	Classes, Modulos, tipo e o proprio compilador
+     -Dart
+
+Client Side
+    Aplicações Web
+
+  Angular 1 não projetado para aplicações complexas
+      Aplicações rápidas e com formulários
+      Pode apresentar problema com aplicações complexas com
+       ciclo de processamento de expressôes.
+     
+      Diretivas como endvel, endsoul e endclick
+
+  Angular 2	
+      Classes e Componentes
+      aderentes aos padrões de web html5
+      Aplicamos meta dados nas classes para que seus
+objetos sejam componentes diretivas, componentes e pipes (filtros)
+      Qualquer propriedade do Dom pode receber valor dinamicamente sem ser diretiva
+      	
+
+Ferramentas  
+  NodeJS
+    plataforma criada apartir do google chrome e javascript vagent
+    aplicações server side
+  AngularCLi
+    
+   https://nodejs.org/en/
+     versão utilizada  v7 no curso
+     versão instalada na máquina 8.2.1
+   Data 05/08/2017
+
+instalar o angular cli
+   npm install -g @angular/cli
+ 
+   versão Angular cli 1.02
+   versão instalada Angular cli 1.2.7
+   ng -v
+
+   Para consertar as permisões no linux e Mac (colocar na frente sudo para ter permissão)
+      https://docs.npmjs.com/getting-started/fixing-npm-permissions
+
+Homebrew 
+  https://brew.sh/index_pt-br.html
+  O Homebrew instala as coisas que você precisa que a Apple não forneceu para você.
+     $ brew install wget
+
+TypeScript
+  Estende ao javascript
+	
+  Transpile (similar uma compilação)
+    ships.ts > ships.js
+  
+  Mecanismos de build
+    gulp	
+    	https://gulpjs.com/
+    grunt
+        https://gruntjs.com/
+
+     Como usar
+	https://imasters.com.br/desenvolvimento/por-que-usar-gulp/?trace=1519021197&source=single
+  
+    Automatizar o build sem copiar os arquivos
+
+ typescript
+   tipo
+      boolena, number, string  e any (tipo genérico)
+   podemos declarar o array da seguinte forma:
+      Indicando o tipo de cochetes 
+         let players:number[] = [1,2,3]
+      classe array associado com o tipo genérico
+	 let players:Array<number> = [1,2,3]
+      tipo inferido pelo valor da variável
+         let players: = [1,2,3]
+      
+   Quando você não diz o tipo o padrão é any
+   
+   --Funciona Tambem em JavaScript :Início
+   Uso de funções anomimas
+   let tiefigthers = ships.filter(function(ship){
+      return ship.type === "TieFighter"	
+   })
+   arrowfunction (lambada em C#)
+	let ties = ships.filter(ship => ship.type === "TieFighter")
+
+   declarar uma variáve uma função, sem retorno
+   let call: (name: string) => void
+   call = name => console.log("Do you copy " + name + "?")
+   call("R2")
+
+   Em javascript todos os parametros são opcionais
+   Em typescript todos os parametros são obridatórios
+
+   o ? significa parametro opcinal
+   function inc(speed:number, inc?:number): number {
+	let i = inc || 1
+	return speed + i
+   }
+
+    function countJedis(jedis:number[]):number{
+      return jedis.reduce((a,b) => a + b ,0)
+    }
+    countJedis([2,3,4])
+    9 
+
+   parametros REST, é uma array mas os valores podem ser passadors por virgula
+   function countJedis(...jedis:number[]):number{
+      return jedis.reduce((a,b) => a + b ,0)
+    }
+    countJedis(2,3,4)
+    9
+  --Funciona Tambem em JavaScript :Fim
+
+  template ´ ${} ´ string vem do EScript2015, mas não funcionou
+  acabei alterando de ´ para "
+
+ configurar o ambiente
+   Ide Atom para o curso
+ utilizad a Ide WebStorm
+
+ instalar o typescript global
+    npm install typescript -g
+    versão do curso 2.2.1
+    versão atualizada 2.4.2
+   
+    Versão
+       tsc -v
+
+ Compilar stand alone (compilar um arquivo) 
+ Executar a compilação
+   ts app.ts
+ 
+ Monitorar a pasta e gerar os arquivos javascript
+   tsc - w 
+ 
+ plugin Atom versão 10
+ a partir da versão 11 os arquivos não são automaticamente compilados
+
+
+Projeto
+  tsconfig.js
+    compilerOptions
+        "ouDir" - gerar o arquivos JS na pasta indicada
+	"noEmitOnError" desativa o compilador com os tipos experado.
+
+ Executar o projeto, não precisa colocar a extensão
+    node dist/app
+          
+
+classes 
+  Definição de um objeto, instancia da classe = objeto
+  ECScript2015 já suporta
+
+  classe
+     atributos
+     contrutores
+     metodos
+  
+  class: Spacecraft {
+     // o nome public/private tem a finalidade de criar a propriedade dentro da classe	
+
+     construtor(public propulsor:string){}
+  }
+
+interfaces
+  Definem um contrato
+  apenas o que deve ser implementado
+
+  Interface pode herdar de outras interfaces
+	interfaces SmugglesShip extends containership{
+
+	hiddenContainers: number
+  }
+
+herança
+   é utilizada a palava extends
+   class milleniumFalcon extends Spacecraft implements Containership{
+	construtor(){
+		super("hyperdrive")
+	}
+         jumpIntoHyperspace(){
+	     if(Math.random() > 0.5){
+                  //super invocar  a implementação padrão do método
+		  super.jumpIntoHyperspace();
+	      }
+              else{
+                  console.log("Failed");
+		}		 
+	}
+    }
+
+	
+Vamos falar de Typescript  Seção 3 - 9
+  
+   ES2015 
+		Template String `${}`
+		arrow function
+			let call = (name: string) => console.log(`Do you copy, ${name}?`)
+			call ('R2')
+	
+	Executar typescript: node dist/app
+
+Vamos falar de Typescript  Seção 3, aula 10
+
+	Classes	
+		possui caracteristicas,atributos
+		definição de um objeto, oque ele vai ter e qual o seu comportamento
+		modelo = classe
+		construtor inicializar a classe
+			public no parametro diz que ele é acessivel por outras classes
+				
+		métodos ações pertencente a uma classe, não precisa colocar o nome function
+		
+	Herança
+		super serve para invocar um método da classe herdada
+		class MillenniumFalcon extends Spacecraff{
+		
+		}
+	Interface	
+		Defini um contrato, apenas o que dever ser implementado
+		interface pode extender outrar interface
+		
+			class MillenniumFalcon extends Spacecraff
+								   implements Container ship{
+		
+			}
+			interface Smugglership extends Containership {
+				hiddenContainers: number
+			}
+Vamos falar de Typescript  Seção 3, aula 11
+	o código gerado em javascript com o uso de class, herança é uma mistura de lodash e prototype
+	interface não tem correspondência para javascript, apenas um tipo para o compilador faça a sua checagem para propriedades, metodos.
+	
+Vamos falar de Typescript  Seção 3, aula 12
+
+	Modelo , contém classes, interfaces, funções e variáveis
+	Organiza o conteúdo, isola o conteúdo
+	
+	Modulo pode ser Exportado duas maneiras:
+		export interface Containership{
+			cargoContainers: number
+		}
+		ou 
+		interface Containership{
+			cargoContainers: number
+		}
+		//utilizar a palavra export no final do arquivo pois facilita a leitura
+		//também é possível mudar o nome que vai ser exportável
+		/
+		export { Containership as CShip}
+		
+		da mesma forma para import
+			import 	{Spacecraff} from "./base-ships"
+			
+			class MillenniumFalcon extends Spacecraft 
+			{
+			
+			}
+		
+		Namespace
+			evitar colisão de nomes
+			nomes antigos aos módulos internos
+			Não trate o namespace como um módulo, por isso não se deve exportar o próprio namespace
+			
+Vamos falar de Typescript  Seção 3, aula 13
+	Organizar as classes e modulo em arquivos
+	ES2015 em módulos
+	typescript acabam dizendo que ele é um ES2015 +, adiciona mais coisas
+	
+	
+Vamos falar de Typescript  Seção 3, aula 14
+	Importar uma biblioteca javascript (lodash não possui tipo e é utilizado como _.função) em typescript
+	Definição de tipo
+	typescript defini um padrão onde é possível mapear uma biblioteca em javascript
+		*.d.ts
+	pode se instalar uma definição de tipos através:
+		NPM Registry
+		github Definitely Typed
+	
+	Diretório padrão do projeto
+		npm init
+			será apresentado as opções name: e version.
+			caso não queria alterar, basta digitat -f para os valores padrões
+		
+		npm install --save lodash@4.14
+		lodash@4.14.2
+		o parametro --save significa que é necessário quanto em desenvolvimento e runtime.
+		
+		npm install --save-dev @types/lodash@4.14
+		@types/lodash@4.14.51
+		
+		Será salvo no arquivo package.json
+
+Vamos falar de Typescript  Seção 3, aula 15		
+	Importar uma biblioteca javascript (lodash não possui tipo e é utilizado como _.função) em typescript
+	na pasta raiz
+	npm init -f
+		será criado um arquivo package.json
+	
+	package.json	
+		arquivo de configuração do projeto
+		Dependências do projeto
+		Scripts para inicializar sua aplicação
+		
+	npm install --save lodash@4.14
+		será criado  seguinte:
+			uma referência no arquivo package.json
+			uma pasta node_modules com o conteúdo do loadash que foi puxado.
+	
+	precisamos importar as definições de tipo do lodash
+	
+	npm install --save-dev @types/lodash@4.14	
+		indica que minha dependência apenas em dev
+		pois em runtime iremos utilizar o do javascript
+	
+	no curso estamos utilizando o lodash "^4.15.55" mas atualizamos a versão "^4.14.71"
+	estamos utilizando o lodash apenas como exemplo.
+	
+	https://atom.io/packages/script
+	existe um bug no plugin do atom typscript que não enxerga os tipos do lodash,
+	para isso podemos forçar o tipo no tsconfir.json
+		"compilerOptions": {			
+			"typeRoots": [
+			  "node_modules/@types"
+			]
+	
+Vamos falar de Typescript  Seção 3, aula 16
+	--criar aplicação
+	ng new jedi-academy --prefix=jad
+	
+	--iniciar o servidor de desenvolvimento através do webpack
+	ng serve
+	
+	--executar a aplicação no browser 
+	localhost:4200
+
+Vamos falar de Typescript  Seção 3, aula 17		
+
+	--arquivo de configuração
+	package.json
+   
+	--pode inicializar aplicação da seguinte
+	ng serve 
+	ng started
+	
+	--versão angular 4.0
+	
+	angular cli utilizava antes systemJS mas agora utiliza webpack.
+	webpack é uma biblioteca responsável por compilar e criar bundle.
+	
+	polyfills.bundle.js
+		script para dar compabilidade com outros browsers.
+	
+	main.bundle.js
+		script da sua aplicação
+	
+	styles.bundle.js
+		seu estilos css
+		
+	vendor.bundle.js
+		arquivos de terceiros
+		
+	 inline.bundle.js
+
+Vamos falar de Typescript  Seção 3, aula 18
+	
+	bootstrap da aplicação
+	
+	disparando um servidor de desenvolvimento " Live Developmente Serve"
+		ng serve ou ng start
+	
+	webpack vai mapear os arquivos e separar os bundles
+		dinamicamente ele injeta os arquivos js de script no index.html ( é possível ver no browser em exibir código fonte)
+	
+	main.js	é responsável por carregar o bootstrap da sua aplicação
+		enableProdMode capaz de habilitar o modulo de desenvolvimento e debug
+		platformBrowserDynamic importada quando estamos startando o o angular a partir do browser.
+		
+		--start da aplicação	
+			platformBrowserDynamic().bootstrapModule(AppModule);
+			
+	app\app.module.ts	
+		NgModule
+			decorate, uma função que serve para aplicar meta dados em um atributo, metodo, argumento de método ou classe.
+			
+		estamos aplicando na class AppModule
+		declarations, imports, providers e bootstrap (podendo ter uma função mas normalemente é utilizado o bootstrap)
+	
+	app\app.component.ts
+		@Component
+			selector (obrigatório) é utilizado definir o nome do componente na página. 
+			templateUrl (obrigatório) qual a cara do meu componente.
+			styleUrls (opcional podendo remover o app.component.css )qual o estilo 
+		
+	index.html
+		ao fazer o refresh é possivel ver o primeiro o texto "Loading..." sendo exibido no html da página.
+		O bootstrap carrega o arquivo main, que carrega o módulo principal, que vai dizer qual é o componente de bootstrap
+		angular vai pegar o conteúdo/template utilizado na página.
+		
+		Responsável por fazer esse bootstrap é a ferramente webpack
+		
+		
+Vamos falar de Typescript  Seção 3, aula 19	
+		
+	Componentes	
+		Classe determinao ciclo de vida
+		
+		template
+		
+		Selector(tag)
+		 
+		controller e scope era utilizado no angular 1
+		
+		Como definir o componente
+			ES2015 + as fictures do typescript
+			
+		@Component({ //decorator
+		  selector: 'jad-root',
+		  templateUrl: './app.component.html',
+		  styleUrls: ['./app.component.css']
+		})
+		
+		A url pode ser relativa, absoluta ou url http
+		podemos utilizar a template ao invez de templateUrl caso seu template seja pequeno e simples
+		template = `<h1> My first componente </h1>`
+		
+		template pode ter multiplas linhas conforme a sintaxe do template string do ES2015 
+		As strings começam e terminam com o ascento da crase `  (shift + `) em ingles "back tick"
+		
+		Template pode ter expressões que resolvem as propriedades do componente, chamado de template interpolation.
+		Qual módulo do angular a propriedade vai estar.
+		
+		componente podem ser comunicar por eventos
+		
+Vamos falar de Typescript  Seção 4, aula 20
+
+	primeiro componente da nossa aplicação de teste.
+	
+	console	
+		--gerar um componente
+		ng generate componente  <nome do componente>
+		
+		--ou pela forma reduzida , vamos criar o componente header	sem os arquivos de teste --spec=false	
+		ng g c header  --spec=false
+		
+		--por enquanto temos um módulo só raiz
+		
+		temos uma interface implementada ngOnInit
+		
+	VSCODE
+		File > Preferences > Keyboard Shortcuts [ ctrl + k ctrl + S]
+		
+		Select the lines you want to comment/uncomment
+		Execute the command editor.action.commentLine (default shortcut on Windows: CTRL  + /)
+		or
+		execute the command editor.action.addCommentLine (default shortcut on Windows: ctrl+k ctrl+c) respectively editor.action.removeCommentLine (default shortcut on Windows: ctrl+k ctrl+u)
+	
+		https://stackoverflow.com/questions/34316156/how-to-comment-multiple-lines-in-visual-studio-code
+		https://code.visualstudio.com/docs/getstarted/keybindings
+		
+		comentário e descomentar:  ctrl+k ctrl+c
+	
+Vamos falar de Typescript  Seção 4, aula 21
+	Property binding
+		quando você quer "linkar" a propriedade de um elemento a uma expressão angular que pode avaliar uma propriedade de um componente, metodo ou expressão mais elaborada.
+		sintaxe []
+			exemplo <input type="text" [value]="user.name">
+			Atualização sempre em um sentido componente > template (para a tag html) é chamado de ONE-WAY BINDING.
+			
+Vamos falar de Typescript  Seção 4, aula 22
+	Property binding
+		uma maneira de você "linkar" a propriedade de um componente com uma propriedade de uma elemento do DOM do template do componente.
+	
+	CMDER:
+		C:\Dalton\udemy\Angular 4\jedi-academy
+			ng g c student --spec=false
+
+		será criado o componente student	
+		ao alterar o valor de um objeto não é necessário parar a execução do node, simplesmente atualizar a página.	
+			
+	Debug/Inspect component
+		https://www.pluralsight.com/guides/front-end-javascript/debugging-angular-2-applications
+		Inspect de componente no browser 
+		na aba Elements clique no componente <jedi-student....
+		vá no console e digite ng.probe($0).componenteInstance
+		
+Vamos falar de Typescript  Seção 4, aula 23
+	Passar dados para um componente.
+		necessário avisar o angular 
+			lista input do decorator do componente
+			
+		import { Component, OnInit, Input } from '@angular/core';
+
+		@Component({
+		  selector: 'jad-student',
+		  templateUrl: './student.component.html',
+		  styleUrls: ['./student.component.css']
+		})
+		export class StudentComponent implements OnInit {
+
+		  name: string = 'Luke';
+		  isJedi: boolean = true;
+
+		  //Expondo com outro valor
+		  @Input ('value') title: string	
+		  constructor() { }
+
+		  ngOnInit() {
+		  }
+
+		}
+		
+		--browser
+		<mt-header value="Titulo"> </mt-header>
+		
+		
+Vamos falar de Typescript  Seção 4, aula 24
+	Passar valores da propriedade do componente
+	
+	No @Component abaixo podemos passa os inputs separador por , ao invés de @Input
+	@Component({
+	  selector: 'jad-student',
+	  templateUrl: './student.component.html',
+	  styleUrls: ['./student.component.css'],
+	  Inputs: [a, b]
+	})
+	
+	Necessário utilizar a sintaxe de property binding, [isJedi], para que funcione o tipo definido boolean, number, Date etc
+		<jad-student name="Leia" [isJedi]="false"></jad-student>
+	
+	--Hidden controla a visibilidade do elemento por css
+	 <div [hidden]="!isJedi">
+       
+Vamos falar de Typescript  Seção 4, aula 25
+	Vamos utilizar diretiva uma opção mais segura que hidden.
+	
+	Componentes são diretivas com templates 
+	Adicionar o comportamento ao Dom
+	3 tipos de Diretivas
+		Componentes mais comuns 
+		Estruturas que mudam o template e a estrutura do DOm ng-for ng-if
+			*ngIf e [ngIf]
+			*ngFor e [ngFor]
+			[ngSwitch] ="xxx"
+				*ngSwitchCase = "zz"
+				*ngSwitchDefault = "zz"
+
+Vamos falar de Typescript  Seção 4, aula 26
+	ngIf e ngFor
+	hidden está controlando a visualização do elemento atravé do css
+	
+Vamos falar de Typescript  Seção 4, aula 27
+	usando o operador de navegação segura
+	
+	cuidado com objetos undefined, uso do ? exemplo Student: {{ student?.name }}
+	você está dizendo para o Angular se até esse ponto a expressão for undefined, o restante não precia ser avaliado.
+
+Vamos falar de Typescript  Seção 4, aula 28	
+	Eventos de um componente
+		eventos internos
+		como o componente pode produzir evento e ser utilizado por outros componentes
+		
+		Antigamente era utilizado o ngclick, ngblur e keyup
+		Sintaxe ()
+		
+		<button (click)="clicked($event)">click!</button>
+		
+		export class ClickableComponent {
+			clicked(event): void{
+				console.log(`Button clicked: ${event} `);
+			}
+		}
+		
+Vamos falar de Typescript  Seção 4, aula 29	
+	
+	Emitindo Eventos em um Componentes
+		EventEmitter
+			Dapper RXJS 
+			
+		import { Component, Output, EventEmitter } from '@Angular/core'
+		
+		@Component({
+			selector: 'mt- clickable,
+			template: '<button (click)="clicked()">Click!</button>'
+		})
+
+		export class ClickableComponent {
+			@Output() myEvent = new EventEmitter()
+			
+			clicked(): void {
+				this.myEvent.emit()
+			}			
+		}
+
+Vamos falar de Typescript  Seção 4, aula 30
+	Adicionando Eventos a um elemento do Template
+		
+
+Vamos falar de Typescript  Seção 4, aula 31
+	Lidando com Erros
+	console vai avisar que temos um erro
+	ERROR in C:/Dalton/udemy/Angular 4/jedi-academy/src/app/app.module.ts (19,5): ',' expected.
+	
+	erros de runtime verificar o console do chrome
+		
+
+Vamos falar de Typescript  Seção 5, aula 32
+	Baixando o projeto inicial MEAT
+	https://github.com/cod3rcursos
+
+	meat-app-starter
+		https://github.com/cod3rcursos/meat-app-starter
+	
+	meat-app-template
+		template base da pagina navegavel
+		
+	C:\Dalton\udemy\Angular 4\   
+	   git clone https://github.com/cod3rcursos/meat-app-starter.git
+	   
+	   C:\Dalton\udemy\Angular 4\meat-app-starter
+	   
+	C:\Dalton\udemy\Angular 4\meat-app-starter
+		npm install
+		ng serve
+	
+	browser: http://localhost:4200/#
+		
+Vamos falar de Typescript  Seção 5, aula 33
+	  Começando aplicação MEAT
+	   
+		Release candidate é uma versão de um software que está praticamente pronto para ser colocado no mercado. Também pode ser chamado apenas de RC. Um produto com essa característica possui potencial para ser o produto final, pronto para ser lançado a menos que um defeito ou um bug mais sério apareça.	   
+			
+		Versão do angular construída no curso "4.0.0-rc.1"
+	   
+	    A versão 2.x e compativel com o angular 4, porem houve uma mudança no router da versão 2.0 para 4.0. A versão 3.0 não tem muita mudança.
+		
+		Portal construído atravé do template adminlte opensource
+		https://adminlte.io/
+		https://jaison.com.br/post/template-gratis-adminlte-dashboard-painel-administrativo-gratuito
+		
+		Desenvolvimento proximo ao real, por isso o motivo do uso do template e utiliza o bootstrap
+		Plugin iCheck
+		http://icheck.fronteed.com/
+		https://plugins.jquery.com/icheck/
+		
+		Precisa de jQuey o script precisa estar por ultimo no arquivo meat-app-starter\angular-cli.json, pois muita coisa o MEAT faz override do adminlte.
+			 "styles": [
+				"../node_modules/font-awesome/css/font-awesome.min.css",
+				"../node_modules/admin-lte/bootstrap/css/bootstrap.min.css",
+				"../node_modules/admin-lte/dist/css/AdminLTE.min.css",
+				"../node_modules/admin-lte/dist/css/skins/skin-red.min.css",
+				"../node_modules/admin-lte/plugins/iCheck/flat/red.css",
+				"styles.css"
+			  ],
+			  
+Vamos falar de Typescript  Seção 5, aula 34
+
+	Criando componentes Header e Home
+	 ng g c header --spec=false
+	 ng g c home --spec=false
+		https://github.com/cod3rcursos/meat-app-template/blob/master/index.html
+		
+Vamos falar de Typescript  Seção 5, aula 35
+	O que são Rotas?
+		<router-outlet></router-outlet>
+		export const ROUTES: Route = [
+			{path='restaurant/:id', component: RestauranteComponent }
+		]
+		Parametro for child nos cursos
+		<a routerlink='restaurants">Restaurante</a>
+		<a [routerlink]='restaurants">Restaurante</a>
+		
+Vamos falar de Typescript  Seção 5, aula 36
+	Criando as primeiras Rotas
+	
+	https://code.visualstudio.com/docs/getstarted/keybindings
+	https://stackoverflow.com/questions/29964825/how-does-one-open-multiple-ins
+	tances-of-visual-studio-code
+	
+	Ctrl + Shift + N will open a new window. You can then use File > Open Folder to have two instances of Visual Studio Code with different folders in each window.
+
+	? + Shift + N for Mac
+
+	List of helpful keyboard shortcuts can be found here
+		
+	Nome dos módulos do angular começa com @, exemplo @angular/routes
+	Estamos trabalhando com os módulos do ES2015
+	
+	app\app.module.ts
+		 imports: [
+		BrowserModule,
+		HttpModule,
+		RouterModule.forRoot(ROUTES) //criação das rotas
+	  ]
+	 
+
+	 https://github.com/AngularClass/angular-starter/issues/889
+	 https://github.com/angular/quickstart/issues/406
+	 
+	 https://blog.thoughtram.io/angular/2016/06/08/component-relative-paths-in-angular-2.html
+	 https://yakovfain.com/2017/03/26/angular-4-changes-in-the-router/
+	 https://yakovfain.com/2016/07/20/angular-2-guarding-routes/
+	 
+	 https://stackoverflow.com/questions/40295834/angular-2-routing-not-finding-routes
+	 
+	 
+	app\header\header.component.html
+		 <li routerLinkActive="active"><a href="#">Restaurantes</a></li>
+		O módulo de roteamento fornece uma diretivada classe dinamica routerLinkActive é utilizado para marcar o link como ativo, utilizando css (active).
+		
+		property binding = []
+		
+		<a [routerLink]="['/']" class="navbar-brand"><b>Meat</b></a>
+		elemento raiz ['/']
+		 
+Vamos falar de Typescript  Seção 5, aula 37
+	Criando o componente de restaurantes
+	criar um componente individual para cada produto
+	
+	C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\restaurants	
+		ng generate componente restaurant --spec=false
+			
+		Criar um tipo que represente o dado do restaurante
+		Importar o decorator @Input() que vai possibilitar do restaurant ser passado para o meu componente restaurants
+		Input 
+		
+Vamos falar de Typescript  Seção 5, aula 38
+	O que é injeção de Dependência?
+		É um padrão de projeto que a aplicação deixa de instanciar seu objetos manualmente e passa a depender do framework dos objetos que ela quer utilizar.
+		O Framework gerencia a instanciação dos objetos e disponibiliza para os componentes da aplicação.
+		Código fica mais testável e limpo
+		
+		É necessário informar o Angular o que será injetado.
+			Se for injetado no componente, ele estará disponível para o componente e seus filhos
+			Se for declarado no módulo o serviço fica disponível para todos os componentes da aplicação
+			
+Vamos falar de Typescript  Seção 5, aula 39
+	O que é um serviço?
+		São classes comuns que você pode injetar no angular
+		Serviços podem singleton que podem guardar dados compartilhados para toda aplicação.
+		
+	3 escopos
+		módulo angular 
+			providers: []
+		Componentes e seu filhos 
+			providers: []
+		Somente Componentes
+			viewProviders: []
+	
+	Alguns serviços
+		Title
+			Alterar o título de uma página		
+			Não é possivel utilizar expressões angular na página html inteira
+			Como o título não fica no head e essa parte não fica no bootstrap foi criado essa alternativa
+		Http
+			encapsula acesso a http
+		Router 
+			Realiza navegação de forma programatica
+	
+Vamos falar de Typescript  Seção 5, aula 40
+
+	Criando as Classes de Serviço para Restaurantes
+		Utilizado para acessar o BackEnd da aplicação
+	
+	metodos de ciclo de vida da interface ngOnInit
+	é chamado uma vez no cliclo de vida do componente
+	
+	
+Vamos falar de Typescript  Seção 5, aula 41
+
+	Reactive programming e Http 
+	
+	Programação reative
+	Padrão observer, foco no interesse
+	objinteressado vem em forma de stream
+	
+	uma seguência de eventos, junto com a notificação de interessados
+	
+	Iterator + Observer = Reactive
+	Biblioteca que o Angular usa para reative programming é a RXJS (Reactive Extension)
+		Objeto principal é observer
+		Observable
+			.from      -> Stream
+			.map       -> Transformação
+			.filter		
+			.subscribe -> Listener parecido com o ForEach
+			
+		Obervables continuam disparando eventos até que sejam explicitamente fechados
+			capacidade de utilizar webSocket
+		Promises são considerados resolvidos depois do primeiro evento
+		
+	Os métodos da API HTTP retornam Observable<Response>
+
+		GET,POST,PUT,DELETE,HEAD,OPTIONS
+		
+	É possível com RXJS realizar retry e  multiplas chamdas 
+	
+		this.http.get('/url')
+			.retry(2)
+			.map(response => response.json())
+			.subscribe(data => this.mydata = data)
+			
+		this.http.post('/url',JSON.stringify(myData)).
+			.map( response => response.json())
+			.map( result => result.id)
+			.subscribe(id => this.id = id)
+			
+		Subscribe/UnSubscribe
+		
+		save (myData){
+			return this.http.post('/url',JSON.stringify(myData)).
+			.map( response => response.json())
+			.map( result => result.id)
+			catch(error => {
+				console.log(error)
+				Observable.throw ('Error posting ${ myData}')
+			})
+			.subscribe(id => this.id = id)
+		}
+		
+				
+Vamos falar de Typescript  Seção 5, aula 42
+	Configurando a API de backend (json-server)
+	
+	Vamos mockar o processo
+	
+	Instalando o json-server
+	C:\Dalton\udemy\Angular 4\meat-app-starter
+		npm install -g json-server
+	
+	startar de processo
+		json-server db.json
+	
+	  Resources
+	  http://localhost:3000/restaurants
+	  http://localhost:3000/menu
+	  http://localhost:3000/reviews
+	  http://localhost:3000/orders
+
+	  Home
+	  http://localhost:3000
+	  
+Vamos falar de Typescript  Seção 5, aula 43
+	Adicionando a API de Backend (json-server)
+	
+	Depois que você faz um subscribe aquela requisição pode ser feita
+	
+	Abrir Consoles 
+		C:\Dalton\udemy\Angular 4\meat-app-starter
+			json-server db.json
+			
+		C:\Dalton\udemy\Angular 4\meat-app-starter
+			ng serve
+			
+	Shift + F5 para limpar o cache e atualizar o chrome		
+			
+Vamos falar de Typescript  Seção 5, aula 44
+	Tratamentos de Erros com o Operador Catch
+	
+	Implementando a interface ErrorHandler
+		Classe de erro global configurando como provider
+	Implementando operador catch
+	
+	app\restaurants\restaurants.service.ts
+		rxjs
+	app\app.error-handler.ts
+		Classe de ERROR
+	app\restaurants\restaurants.component.ts
+		Implementando serviço 
+	
+	
+Vamos falar de Typescript  Seção 5, aula 45
+	Parametrizando Rotas
+	Como passar e obter parametros
+			
+	2 formas de obter o parametro
+		SnapShot
+			Fotografia no momento que pedir a rotas
+			É util quando a rota não vai mudar e que o componente sai de cena e volta depois
+		Subscribe
+			Se inscrevendo na rota e escutando a mudança de parametros
+		
+		Reactive Programming 
+			RXJS são implementadas 
+			
+		this.route.params.subscribe //para atualizar o detalhe sempre que houver uma mudança de rota
+		
+Vamos falar de Typescript  Seção 5, aula 46
+	Criando o Componente de Detalhe de Restaurante
+	 ng g c restaurant-detail --spec=false
+	 
+	 ng generate component menu --spec=false
+	 ng g c shopping-cart --spec=false
+	 ng g c menu-item --spec=false
+	
+		
+Vamos falar de Typescript  Seção 5, aula 47
+	Serviço de Http para o Detalhe do Restaurante
+	
+Vamos falar de Typescript  Seção 5, aula 48
+	Rotas filhas para Avaliações e Menu
+	Navegações entre componentes filhos
+	
+Vamos falar de Typescript  Seção 5, aula 49
+	O que são Pipes?
+	Responsável de transformações de dados para uma apresentação diferente.
+	Sõa equivalentes a filtros
+	string lower case, formatar um formato json
+	
+	user: = { name: 'Luke Skywalker', isJedi: true}
+	{{ user | json }}
+	{{ user.name | uppercase }}
+	{{ user.name | lowercase }}
+	
+	{{ 0.5 | percent }}
+	{{ birthday | date: 'dd/MM/yyyy' }}
+	{{ price | currency: 'BRL': true }}
+	
+	//podendo combinar assim que chegue no resultado esperado
+	{{ ['one', 'two'] | slice: 0:1 | json | uppercase }}
+	
+	
+Vamos falar de Typescript  Seção 5, aula 50
+	Implementando o Componente de Avaliações - Pipe Async e Date
+	
+	Estou em uma sub rota e o parametro não é desse componente e sim do componente parent
+	
+	
+Vamos falar de Typescript  Seção 5, aula 51
+	menu e Menu Item
+	
+	
+Vamos falar de Typescript  Seção 5, aula 52
+	Implementando o carrinho de compras
+	itens do carrinho vai ficar em memória
+	
+
+Vamos falar de Typescript  Seção 5, aula 53
+	Aplicando eventos no componente do carrinho de compras
+	
+Vamos falar de Typescript  Seção 5, aula 54
+	Localizando Preços para moeda Brasileira
+	
+	Adicionar o pacote intl no package.json para trabalhar com internalização
+	Adicionar a referência no arquivo polyfills.tsVali
+
+	src\app\app.module.ts
+	   
+Vamos falar de Typescript  Seção 6, aula 55
+	 O que são Templates Forms?
+		É uma forma de declarativa de configurar seu Formularios no template do seu componente
+		Declarativa NGMODEL
+		
+		Sempre que declaramos um formulario "<form>  angular declara de forma implicita a NGFORM 		
+		Com essa diretiva podemos 
+			Validar o form
+			Valor do form
+			Status como Dirty, Pristine e Touched
+			
+		é necessário utilizar NGFORM no controle para que o form saiba se está valida ou não o controle
+			<form>
+				<input type="text" name="name" NgModel/>
+			</form>
+	Pode se utilizar o propety binding [NgModel]="username" como One-Way Binding, objeto alterado reflete no controle
+	Necessário utilizar o two-way binding [(ngModel)]="username", objeto alterado reflete no controlo, assim como o controle alterado reflete no objeto
+	
+	Acesso para alguns componentes
+		<form #myForm="NgForm">
+			<input type="text" name="name" ngModel/>
+			<input type="text" name="lastname" ngModel/>
+			<input type="text" name="address" ngModel/>
+			<button [disabled] ="myForm.invalid"/>
+		</form>
+	
+Vamos falar de Typescript  Seção 6, aula 56		
+	Criando um componente de compra
+	ng g c order --spec=false
+
+Vamos falar de Typescript  Seção 6, aula 57
+	Usando templates Form na Compra
+	ao se trabalhar com form devemos desabilitar a validação de form do browser
+	caso não desabilite dependendo do navegador o comportamento pode mudar e o usuário tera uma experiencia diferente
+	<form novalidate> é responsável por atribuir a validação do form somente para o angular
+	
+		
+Vamos falar de Typescript  Seção 6, aula 58
+	Validação com template Forms 
+	ngmodel
+		valid|invalid
+			de acordo com as regras de validação
+		
+		pristine|dirty
+			pristine estado inicial do campo ou do form
+			dirty se torna quando o usuário digita no campo (modifica lo)
+		
+		Untouched|touched
+			touched indica quando o usuário entra no campo
+		
+		template verbos #ipt para indicar o estado do campo
+			<form>
+				<input name="name" [ngModel]="username" #ipt="ngModel" />
+				<span *ngIf="ipt.invalid">Nome inválido</span>
+			</form>	
+		
+		Validators
+			Required 
+				Campo obrigatório
+			
+			Pattern - Regex 
+				Recebe um padrão de expressão regular
+				
+			MinLegnth & MaxLength
+				recebe um numero e verifica se o valor é esperado.
+				
+		Classes CSS
+			NG-VALID|NG-INVALID
+			
+			NG-PRISTINE|NG-DIRTY
+			
+			NG-TOUCHED|NG-TOUCHED
+
+Vamos falar de Typescript  Seção 6, aula 59
+	Aplicando validação no formulario de compra
+		
+
+Vamos falar de Typescript  Seção 6, aula 60
+	Aplicando feedback visual no formulario de compra
+																					
+	código está repetitivo e iremos transformar em uma componente especifico e reutilize
+
+Vamos falar de Typescript  Seção 6, aula 61	
+	Criando um componente de input (Content Projection)
+
+	ng g c input --spec=false
+	
+	1 - podemos transformar nosso componente em container e aplicamos apenas o estilo visual e deixar que o componente parent passa o input text componente de compra "Content Projection"
+		https://codecraft.tv/courses/angular/components/content-projection/
+		http://blog.angular-university.io/angular-ng-content/
+		
+	2 - Deixamos o componente isolado dentro do input e implementamos uma interface "control value acessor" que serve apoio as diretivas do formulario
+			https://angular.io/api/forms/ControlValueAccessor
+			https://medium.com/@tarik.nzl/angular-2-custom-form-control-with-validation-json-input-2b4cf9bc2d73
+				https://plnkr.co/edit/iFXRkJWVZ9tQ9i6mxmuf?p=preview
+		
+	Substituir a tag input por ng-content.
+	Espaço que vai entrar um conteúdo, 	
+				
+	decorater content-child
+		Você diz quem é o elemento ou a diretiva que você quer pegar a referência
+		
+	@Input
+		   Associar o decotor input nas propriedades para que possam ser referenciados de fora.
+		  @Input() label: string
+		  @Input() errorMessage: string
+				
+				
+Vamos falar de Typescript  Seção 6, aula 62
+	Validação com expressões regulares
+		Exemplos de expressões regulares no arquivo meat-app-starter\README.md
+			exemplo `/^[0-9]*$/`
+			remover '/
+			utilizar somente ^[0-9]*$
+			
+Vamos falar de Typescript  Seção 6, aula 63
+	Criando Componente Usando ControlValueAcessor (Parte 1)
+	
+	ng g c radio --spec=false
+	
+	
+Vamos falar de Typescript  Seção 6, aula 64
+	Criando componente Usando ControlValueAccessor
+	
+	writeValue é um metodo que é chamado pelas diretivas quando você quer passar valor
+	
+	registerOnChange chamar a função sempre que o valor interno mudar
+	
+	setValue avisa as diretivas que o valor do componente mudou
+	
+	registerOnTouched paa saber se entrou no componente
+	
+	setDisabledState 
+	
+	NG_VALUE_ACESSOR
+	
+	forwardRef registrar o componente como um value acessor 
+	
+Vamos falar de Typescript  Seção 6, aula 65
+
+	Componente que vai receber uma lista e vai produzir aventos de remover
+	ng g c order-items --spec=false
+	
+	Teremos o evento remover, Alterar e Diminuir a quantidade
+	EventEmitter é tipo de evento.
+	
+Vamos falar de Typescript  Seção 6, aula 66
+	Fornecendo os itens a Compra
+	
+Vamos falar de Typescript  Seção 6, aula 67
+    Criando o componente Total de frete e Compra
+	ng g c delivery-costs --spec=false
+
+Vamos falar de Typescript  Seção 6, aula 68
+    Finalizando a compra (http POST)
+	
+Vamos falar de Typescript  Seção 6, aula 69
+    Navegação programática via router
+
+	ng g c order-summary --spec=false
+	
+Vamos falar de Typescript  Seção 6, aula 70
+	Criando um componente de Rating
+	ng g c rating --spec=false
+	
+	expressão com property binding
+		[class.fa-star]="r <= rate" [rate. fa-star-o]="r > rate"></i>
+		
+Vamos falar de Typescript  Seção 6, aula 71
+	O que são reatives forms?
+		nova forma de implementar form
+		a inves de implementar ngform e os validadores nos campos, vamos criar instancias de formgroup ou formcontrol dentro de um componente
+
+	export class UserComponent implements OnInit{		
+		userForm: FormGroup
+		
+		constructor(private fb: FormBuilder){}
+		
+			ngOnInit(){
+				this.userForm = this.fb.group({
+					username: '',
+					password: ''
+					
+					ou
+					username: this.fb.control('', [Validator.requerid]), --FormControl
+					password: this.fb.control('',[Validator.minLenght(3)])
+				})
+			}
+		}	
+	}		
+	
+	FormBuilder que ajuda na criação nos campos e grupos.
+	
+	Template forms
+	Funções staticas padrões 
+		Minlength
+		Maxlength
+		Requerid
+		Pattern
+		
+		
+	Se quiser agrupar os campos e utilizar o form group
+	você pode implementar validadores a nível do grupos
+	
+	Template sem ngmodelm, form será associado ao formgroup
+	<form [formGroup] ="userForm">
+		<input type="text" formControlName="username"/>
+		<input type="password" formControlName="password"/>
+		
+		<div [formGroupName] ="address">
+			<input type="text" formControlName="street"/>
+			<input type="text" formControlName="zip"/>		
+		</div>
+	
+	</form>
+		
+	o Grupo também é associado as classes de CSS para facilitar o feed back visual
+	
+Vamos falar de Typescript  Seção 6, aula 72	
+	Refatorando a Aplicação para Reactive Forms
+	
+	Mudar de template forms para react forms
+	mudar o nosso controle input que usa ng-model para outra diretiva form-group
+	
+Vamos falar de Typescript  Seção 7, aula 73
+	Validação om Reactive Forms
+	Validators
+
+Vamos falar de Typescript  Seção 7, aula 74
+		Criando Validadores Personalizados
+	
+		https://toddmotto.com/angular-2-form-controls-patch-value-set-value
+	
+		Máscaras em Angular são feitas com diretivas. Muito similar a um componente, com a exceção que não tem o template.
+
+		Se quiser criar uma diretiva para aplicar a máscara de um cep, por exemplo, como XXXXX-XX, o código seria assim:
+
+		@Directive({
+		  selector: "[cep]" //selector de atributo
+		})
+		export class CepDirective {}
+		Para criar uma diretiva, usamos uma classe associada com o decorator @Directive. Nesse caso, só o selector precisa ser informado. Como usaremos a diretiva em um atributo, usamos o selector de atributo com os "[ ]", portanto "[cep]"
+
+		A diretiva seria usada por um componente assim:
+
+		<input type="text" formControlName="iptCep" cep>  
+
+		Dentro da diretiva precisamos de duas coisas:
+
+		1) Uma referência ao elemento
+
+		2) Um binding de um evento no input para gente poder saber quando o usuário está digitando no campo.
+
+		O primeiro a gente pode fazer com injeção de dependência e obter uma referência para ElementRef, que vai representar o elemento associado com a diretiva.
+
+		O segundo com um decorator @HostListener, que usamos para "grudar" um evento no elemento da diretiva, no caso, o input.
+
+		//1)
+		constructor(private element: ElementRef){}
+		 
+		//2)
+		@HostListener('input')
+		  onInput(){
+			const input = this.element.nativeElement as HTMLInputElement
+			input.value = this.parseValue(input.value)   
+		  }
+		Nesse caso, usamos o evento "input" de Html 5. A cada mudança no valor, nosso método será chamado.
+
+		Feito isso, implementamos o método de parse (implementação de exemplo - não otimizada):
+
+		parseValue(value){
+		 
+			//removendo os "-"
+			value = value.replace(/-/g,'')
+		 
+			//tamanho máximo de 8 números, os demais desconsiderados.
+			if (value.length > 8){
+			  value = value.substr(0,8)
+			}
+		 
+			let sections = []
+			sections.push(value.substr(0,5))
+			if(value.length>5){
+			  sections.push(value.substr(5,3))
+			}
+		 
+			//retorna com a máscara XXXXX-XXX
+			return sections.join('-')
+		  }
+		E registramos a diretiva no módulo:
+
+		@NgModule({
+		  declarations: [CepDirective]
+		})
+		export class AppModule {}
+		No geral é isso, mas para a integração completa com os formulários do Angular, template forms e reactive forms, nossa diretiva precisa implementar ControlValueAccessor. Abaixo, a implementação completa.
+
+		Atenção ao método onChange. Ele precisa ser chamado para que o novo valor seja notificado aos bindings de form.
+
+		@Directive({
+		  selector: "[cep]", //selector de atributo
+		  providers: [
+			{
+			  provide: NG_VALUE_ACCESSOR,
+			  useExisting: forwardRef(()=>CepDirective),
+			  multi: true
+			}
+		  ]
+		})
+		export class CepDirective implements ControlValueAccessor{
+		 
+		  constructor(private element: ElementRef){}
+		  onChange: any
+		 
+		  @HostListener('input')
+		  onInput(){
+			const input = this.element.nativeElement as HTMLInputElement
+			input.value = this.parseValue(input.value)
+			this.onChange(input.value)
+		  }
+		 
+		  parseValue(value){
+			value = value.replace(/-/g,'')
+			if (value.length > 8){
+			  value = value.substr(0,8)
+			}
+			let sections = []
+			sections.push(value.substr(0,5))
+			if(value.length>5){
+			  sections.push(value.substr(5,3))
+			}
+			return sections.join('-')
+		  }
+		 
+		  /**
+		   * Write a new value to the element.
+		   */
+		  writeValue(value: any): void {
+			this.element.nativeElement.value = this.parseValue(value)
+		  }
+		 
+		  /**
+		   * Set the function to be called when the control receives a change event.
+		   */
+		  registerOnChange(fn: any): void {
+			this.onChange = fn
+		  }
+		  /**
+		   * Set the function to be called when the control receives a touch event.
+		   */
+		  registerOnTouched(fn: any): void {}
+		  /**
+		   * This function is called when the control status changes to or from "DISABLED".
+		   * Depending on the value, it will enable or disable the appropriate DOM element.
+		   *
+		   * @param isDisabled
+		   */
+		  setDisabledState?(isDisabled: boolean): void {}
+		}
+
+
+		Marcar como útil (2)
+		Duilio Benjoino
+
+		Duilio  · há 2 meses 
+		Entendi.
+		Muito bom, obrigado Tarso!
+
+		Marcar como útil
+		Douglas M. Santos
+
+		Douglas M.  · há 14 dias 
+		Comigo, infelizmente não funcionou :(
+
+		Criei a Diretiva, copiei toda a implementação acima e mesmo assim, não gera a mascara para o campo CEP.
+
+		Eu estava utilizando no TF e funcionava, mas depois que mudei pro RF, parou de funcionar...
+
+		Olha aí, como está meu cep.directive.ts (dentro da pasta shared e sendo carregado pelo SharedModule com PreLoading
+
+		https://gist.github.com/dmsysop/f891b15247dcf2991bde6860767cb799
+
+		meu input está da seguinte forma: 
+		<input class="form-control" formControlName="cep" cep (blur)="consultaCep()" placeholder="CEP" autocomplete="off">
+		
+
+Vamos falar de Typescript  Seção 8, aula 75
+	O que são módulos?
+	Módulo no Angula são itens de configuração do framwork 
+		Agregar componentes, Diretivas, serviços e pipes
+		Não só como objetivo de organizar seu código.
+		Decidir o que vai ser exportado para fora do seu módulo
+		Como a injeção de dependência  vai ser configurada
+		
+	Dividir a aplicação em pequenas partes para serem carregadas
+		Lazy Loading (carregamento tardio)
+			
+	Tipos de Módulo
+		Root module
+			Raiz 
+			carregamento dos componentes da aplicação
+			Faz o bootstrap da aplicação
+		
+		Shared & Core modules
+			Shared Módulo compartilhado
+			Core apenas serviços da aplicação
+				http do próprio angular
+			
+		Feature Module
+			Implementações das funcionalidades dos módulos
+							
+							(Feat. Componentes Diretivas , ETC)
+			           ->  Feature ->
+ 		Core  -> Root                  Shared
+					   ->  Feature ->	        (Componentes Diretivas e Pipes)
+						
+		
+		@NgModule({
+			declaration: [...],
+			imports: [...],
+			providers: [...],
+			exports: [...]
+		})
+		exports class MyModules {}
+
+Vamos falar de Typescript  Seção 8, aula 76	
+	Carregamento Tardio de Módulos (Lazy Loading)
+
+	Falar melhor sobre módulos
+		Shared module
+		Core module
+		Feaure module
+		
+		remover o About do app.module
+		remover o About do app.routers 
+			substituir do componente por loadchildren
+			
+		Ao invez de carregarmos o componente, estamos carregando um módulo
+		Precisamos definir o componente padrão daquele módulo que será carregado de forma tardia (lazy-loading)
+		
+Criando um módulo Compartilhado  Seção 8, aula 77
+		Criar um shared model com os componentes que compartilhamos
+		
+		shared	
+			input, radio, rating
+			
+		Foi criado um módulo SharedModule para ser carregado de forma tardia "shared.module.ts" com
+			Foi adicionado as classes seguintes classes:
+				InputComponent
+				RadioComponent
+				RatingComponent
+				FormsModule
+				ReactiveFormsModule
+				
+			
+		Foi removido as classes abaixo do modulo "app.module.ts"
+				InputComponent
+				RadioComponent
+				RatingComponent
+				FormsModule
+				ReactiveFormsModule
+		
+		Foi adicionado a classe abaixo do modulo "app.module.ts"
+			SharedModule
+			
+		Diferênça entre Feature Module e Shared Module;	
+			Um Feature Module vai conter a implementação de uma funcionalidade da aplicação, como por exemplo a Compra. Como essas funcionalidades são isoladas, não há a necessidade de expor nada. Por isso um feature module não exporta componentes.
+
+			Já o Shared Module carrega componentes (diretivas, pipes, etc) que podemos usar em várias partes da aplicação, como por exemplo, os nossos componentes de input. Dois Feature Modules diferentes podem usar o mesmo componente de input que estaria declarado em um Shared Module.
+
+			No Shared Module também não implementamos funcionalidades, apenas componentes e outros itens reusáveis para o restante da aplicação.	
+			
+Criando um módulo Compartilhado  Seção 8, aula 78
+	Criando uma  Feature Module (Módulo de Compra)
+	
+	os arquivos 7.chunk.js e 8.chunk.js são gerados os modulos about e order gerados pelo lazy-loading.
+	
+Criando core module  Seção 8, aula 79
+	Componente tem um contexto de injeção de dependências 
+	Contexto global, modulo raiz da aplicação
+	
+	Criando o módulo CoreModule
+	
+Adicionando Serviços em um módulo compartilhado Seção 8, aula 80
+	Modulo com providers
+	
+Realizando o pré carregamento de Todos os Módulos Seção 8, aula 81
+	
+	preloadingStrategy: PreloadAllModules
+		carregamento das imagens logo depois do main 		
+		Os módulos são carregados em background de forma tardia, evitando as demoras
+		
+			
+		https://www.softwarearchitekt.at/post/2016/10/02/optimizing-performance-with-preloading-and-the-new-angular-router.aspx
+
+		https://github.com/coryrylan/angular-preloading-strategies
+
+		https://coryrylan.com/blog/custom-preloading-and-lazy-loading-strategies-with-angular
+		
+Introdução a Animações Seção 9, aula 82	
+		web Animations API
+			Atualmente só o chrome e o FireFox Implementam parte.
+		
+		https://developer.mozilla.org/pt-BR/docs/Glossario/Polyfill
+		https://remysharp.com/2010/10/08/what-is-a-polyfill
+		https://pt.stackoverflow.com/questions/194857/o-que-%C3%A9-polyfill
+		
+		Um polyfill é um pedaço de código (geralmente JavaScript na Web) usado para fornecer funcionalidades modernas em navegadores mais antigos que não o suportam nativamente.
+
+		Por exemplo, um polyfill pode ser usado para imitar a funcionalidade de um elemento HTML Canvas no Microsoft Internet Explorer 7, usando um plugin Silverlight, ou suporte de simulação para unidades CSS rem, ou text-shadow, ou o que você quiser.
+		
+		No Angular 2 as animações eram feitas no Core, agora no Angular 4 são feitas pelo @angular/animations
+		
+		Animation:
+			http://jasonwatmore.com/post/2016/07/13/angularjs-custom-modal-example-tutorial
+		
+		Estados
+			WildCard representado para utilizar qualquer estado
+			
+			void transição de um elemento que não está na arvore de componente ou que vai sair
+			
+Instalação do módulo de Animações Seção 9, aula 83			
+	Importar o módulo de animações
+	Importar o pollyfill para os browsers que não possuem suporte o web animation API
+	configurar o browse animation 
+
+	C:\Dalton\udemy\Angular 4\meat-app-starter
+		npm install --save @angular/animations@4.0.0
+		npm install --save web-animations-js
+	
+	BrowserAnimationsModule
+	
+Definindo um Snackbar Seção 9, aula 84	
+	Adicionar/Remover um item no carrinho, informar o usuário.
+	criar classe de componente
+	shared/messages/snackbar
+	
+	https://angular.io/api/forms/NgModel
+	https://www.themarketingtechnologist.co/introduction-to-data-binding-in-angular-2-versus-angular-1/
+	
+	https://stackoverflow.com/questions/31548311/angular-2-html-binding
+	https://stackoverflow.com/questions/34784448/ng-bind-equivalent-in-angularjs-2
+	
+
+Aplicando Animações no Snackbar Seção 9, aula 85
+	Visible e hidden
+	Associar o trigger ao nosso snackbar
+	
+	shared\messages\snackbar\snackbar.component.html	
+		<div class="snackbar" [@snack-visibility]="snackVisibility">
+		
+	criando um schema de notificações
+
+Usando um Oservable com Snackbar Seção 9, aula 86
+
+	Criando um Observable 
+	
+	Adicionando items e visualizando no snackbar
+		app\shared\messages\snackbar\snackbar.component.ts
+		app\restaurant-detail\shopping-cart\shopping-cart.service.ts
+		
+		
+Usando os Operdores Do e SwitchMap Seção 9, aula 87		
+	
+	'subscribe' coloca um listener no observable e só apartir daquele ponto executa.
+	'do' permite executar uma ação no instante que chega a mensagem.
+	Encadeamento de observables 
+		Do operador
+		switchMap troco os eventos e unsubscribe
+		
+		
+Animação com Void e Estilos em Transição Seção 9, aula 88
+	Animação para carregar a lista de produtos do restaurantes
+	app\restaurants\restaurant\restaurant.component.ts
+	app\restaurants\restaurant\restaurant.component.html
+	
+	
+Animação nos Itens do Menu Seção 9, aula 89
+	
+	http://www.w3big.com/pt/angularjs/angularjs-animations.html
+	http://armandocouto.com.br/angularjs-animacao-com-javascript/
+	
+	http://www.w3im.com/pt/angular/angular_animations.html
+		
+		Cima para baixo
+		http://www.w3im.com/pt/angular/tryit.php?filename=try_ng_animation2
+		
+		Cortina
+		http://www.w3im.com/pt/angular/tryit.php?filename=try_ng_animation_css
+		http://www.w3im.com/pt/angular/tryit.php?filename=try_ng_animation_css2
+		
+		https://fonts.google.com/specimen/Raleway
+		
+	Fizemos uma animação na diagonal da esquerda para direita nos restaurantes.
+	Agora vamos fazer uma animação nos itens do restaurante no eixo X no menu item.
+	
+Animação com KeyFrames Seção 9, aula 90
+	Definição Animação KeyFrames contém varios marcos ou passos com um stilo de CSS diferente
+		Pontos da animação deve mudar
+			animate('',keyframes([style('',offset:0)]))
+				offset varia de 7 a 1
+			você pode utilizar transform, opacity etc
+			
+	
+Usando Animação com Keyframes nos Itens do Carrinho Seção 9 Aula 91
+
+	Animar a entrada e saida do carrinho de compras
+		Utilizar o "opacity" a transição é suave, fazer um fading
+			restaurant-detail\shopping-cart\shopping-cart.component.ts
+				Style primeiro ponto da animação 
+				Style segundo ponto da animação 
+				Style terceiro ponto da animação 
+				
+				Animação ao adicionar o item
+				Animação ao remover o item
+				
+Resumo de Animações Seção 9 Aula 92				
+	Angular 4 
+		@angular/animations
+		Tem como base a web-animations-js (polyfill)
+			Você ainda precisa de um polyfill porque apenas chrome e firefox suportam parte das feature 
+			Para dar suporte a animação precisamos importar 
+				Browser animations 
+				Module (app module)
+				
+		Definir animar
+			utilizamos o trigger que vai conter vários estados com estilos CSS que definem as propriedades dos elementos 
+			Estados especiáis 
+				void representa o estado quando o componente não está no DOM
+				wildcard representa uma transação em qualquer estado
+				
+		Função Animate Define 
+			Duração - MS/S
+			Delay - MS/S
+			Aceleração (Easing)
+			
+		Keyframes podemos ter animações mais complexas
+			Marcos = offset "marcos intermediários"
+			Definem estilos css
+			
+		propriedades de animação são inumeras
+		
+		Web Animations stand mais 3 spacks
+		CSS3 transitions
+			w3.org/TR/css3-transitions/#animatable-properties
+			
+		CSS3 Animations 
+		
+		SVG
+		
+		https://angular.io/api/animations/stagger
+		https://www.yearofmoo.com/2017/06/new-wave-of-animation-features.html
+		
+		
+Rotas com Wildcard (Criando Página Não Encontrada) Seção 10 Aula 93
+	Criar uma rota de wildcard para uma rota não encontrada, erro 404
+	
+	ng g c not-found --spec=false
+	
+	app\app.routes.ts
+		Router do angular usa uma estratégia, o primeiro router que bater na regra ele vai utilizar
+		As mais específicas ficam em cima e as mais genéricas ficam em baixo.
+		
+	Caso a rota tenha parametro e alterarmos para gerar um erro, deveríamos redireconar para not-found
+		https://angular-2-training-book.rangle.io/handout/routing/query_params.html
+		
+		app\restaurant-detail\restaurant-detail.component.ts
+			na promessa do serviço, caso ocorra erro para carregar o produto estamos redirecionando para página not-found
+			
+			https://stackoverflow.com/questions/44385777/how-does-http-error-handling-work-with-observables
+
+	Global Error Handling with Angular2+
+	https://medium.com/@amcdnl/global-error-handling-with-angular2-6b992bdfb59c
+	
+	RxJS state management in Angular 2 + Error handling.
+	https://medium.com/@rachelheimbach/rxjs-state-management-in-angular-2-error-handling-678deabf3331
+	
+	Angular 4 HTTP POST Service and Error Handling (Angular 4) - #11
+	https://www.youtube.com/watch?v=gmIZhml6tQQ
+	
+			
+	Authentication in Angular & JWT
+	https://medium.com/@amcdnl/authentication-in-angular-jwt-c1067495c5e0
+
+		
+	Create the toJSON operator in Angular
+	https://netbasal.com/create-the-tojson-operator-in-angular-adaac9356e21
+
+
+	Udacity
+		Nanodegree Fundamentos de Data Science I - Python para Análise de Dados
+		https://www.youtube.com/watch?v=t36bdDAU0FI
+	
+	
+Construindo a aplicação Seção 10 Aula 94
+	Como realizar o Build da aplicação
+	
+	Discutir sobre a estratégica padrão de url
+	
+	Personalizar o build de produção com variáveis de ambiente
+	comando ng build
+	
+	ng serve compilar nossa aplicação e servir o ambiente de desenvolvimento
+	
+	Comando endbuild
+		Pegar nossa aplicação e fazer o empacotamento dos arquivos que o webpack faz (bundle)
+			bundles
+				main.bundle
+				styles.bundle
+				script.bundles
+				vendors.
+				inline.
+				chuck.
+				
+		Colocar numa pasta build
+	ng build 
+		construindo a aplicação com o ambiente de desenvolvimento, assimm como o ng serve
+		Extensão.map	
+			responsável por fazer debug da sua aplicação com o código gerado em javascript para o tyscript
+			
+		criar a pasta dist
+		
+	ng build --prod 
+		executar com o build de produção de uma forma mais enxuta
+		
+		Tree Shaking
+			https://webpack.js.org/guides/tree-shaking/
+			
+			Tentar eliminar código que não está sendo utilizado pela nossa aplicação
+			Deixar bundles menores
+			
+			minificação/ugly file dos nosso recursos
+				tirando os espaços em brancos
+				Compilação dos meus templates em javascript
+			
+		Ahead-of-Time Compilation
+			https://angular.io/guide/aot-compiler
+			
+		Angular 2 : Just-in-Time (JiT) vs Ahead-of-Time (AoT) compilation
+			https://stackoverflow.com/questions/41450226/angular-2-just-in-time-jit-vs-ahead-of-time-aot-compilation
+			
+			JIT - Compile TypeScript just in time for executing it.
+				Compiled in the browser.
+				Each file compiled separately.
+				No need to build after changing your code and before reloading the browser page.
+				Suitable for local development.
+				
+			AOT - Compile TypeScript during build phase.
+				Compiled by the machine itself, via the command line (Faster).
+				All code compiled together, inlining HTML/CSS in the scripts.
+				No need to deploy the compiler (Half of Angular size).
+				More secure, original source not disclosed.
+				Suitable for production builds.
+	
+	ng build --prod 
+	npm i @angular/cli@1.2.7 --save-dev  
+	npm i webpack -g; npm link webpack --save-dev
+	npm ls webpack
+	npm ls -g --depth=0
+
+	npm i @angular/cli@1.2.7 --save-dev 
+	"@angular/compiler-cli": "^4.2.4"
+	
+	https://github.com/sean-perkins/angular-electron-seed
+	
+	Problema com o Lazy load
+	Error: No module factory available for dependency type: ContextElementDependency	
+	
+Modificando a Estratégia de Navegação (Hash)  Seção 10 Aula 95
+	Angular 2 usa a api de historico do html 5	
+		para fazer push no histórico das rotas
+			quem controla a navegação é o angular
+			
+	index possui todos os scripts que disparam o bootstrap
+		vai olhar as navegações da rota
+		
+	padrão  de navegação não usa mais o # do AngularJS
+	
+	servidor de http padrão
+		erro ao salvar o link no histórico do browser e tentar acessar novamente, recebemos o erro code 404.
+			localhost:8000/restaurants/bread-bakery/menu
+			pois o angular é processado no client
+			
+			padrão # hash, vai ser processado no client e não no servidor
+			
+			Ao usar a PathLocationStrategy (Angular 2+), o Angular vai usar a History API do HTML 5 para empilhar os links no histórico de navegação sem ter que ir buscar no server o conteúdo, afinal a navegação acontece no client. Uma solução moderna e mais elegante em frente ao uso do hash.
+
+			Exemplo.: /restaurants/bread-bakery/menu
+
+			Porém, no caso de um refresh, o browser vai tentar resolver o link no server. Se o servidor não redirecionar o request para o index.html e retornar um 404, o browser não vai exibir o conteúdo. Ao usar a PathLocationStrategy, se torna necessário que o servidor seja alterado para fazer isso automaticamente.
+
+			A estratégia HashLocationStrategy existe para esse cenário onde você não possa alterar o servidor.
+
+			Nas aulas 98 e 99, mostro como usar a PathLocationStrategy no Apache Server.
+		
+		
+		Pode ser um bug do Angular-CLI. Há uma issue bem similar a sua (https://github.com/angular/angular-cli/issues/4752)
+		Diz qual versão você tem no projeto? ng -v 
+
+		O erro pode ter a ver com o local do deploy no apache, como por exemplo um subdiretório, e você precisar fazer um ajuste no Base Href da aplicação.
+
+		Dá uma olhada na Aula 100.
+
+		Para usar o SimpleHTTPServer, você precisa instalar o Python.		
+	
+		Você pode usar qualquer servidor que sirva conteúdo estático, afinal os arquivos da aplicação são compostos de HTML, CSS e JS (os arquivos da pasta /dist). Não há necessidade de NodeJS no servidor.
+
+		A única coisa que precisaria ser feita é ter uma regra no servidor que redirecione um 404 para o index.html para que o bootstrap seja feito. 
+
+		No Apache, é recomendável fazer no arquivo de configuração principal do server. Se não tiver acesso ao arquivo principal de configuração, você criaria um arquivo .htaccess na raiz do diretório da sua app com o seguinte conteúdo:
+
+		RewriteEngine On 
+		# Se um conteúdo existir, sirva
+		RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
+		RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+		RewriteRule ^ - [L]
+		# Se não existir, envie o index.html
+		RewriteRule ^ /index.html
+		Pronto, dessa forma, pode usar o esquema padrão do Angular. Aproveitando, estou gravando um conteúdo extra e vou mostrar como fazer isso em vídeo.
+
+		Abraços.
+	
+	
+		
+		--Git 64 configuração no webstorm
+			https://stackoverflow.com/questions/39392681/how-to-configure-git-in-webstorm
+				config: C:\Users\dalton.leonardo\AppData\Local\Programs\Git\cmd\git.exe
+				
+			npm i @angular/cli@1.0.2 --save-dev
+			npm i "web-animations-js": "^2.3.1"
+			
+
+			
+			https://github.com/angular/angular-cli#development-hints-for-working-on-angular-cli
+				
+					
+			PS C:\Dalton\udemy\Angular 4\meat-app-starter> npm install
+			npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@^1.0.0 (node_modules\chokidar\node_modules\fsevents):
+			npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.2: wanted {"os":"darwin","arch":"any"} (current
+			: {"os":"win32","arch":"x64"})
+			npm WARN enoent ENOENT: no such file or directory, open 'C:\Dalton\udemy\Angular 4\meat-app-starter\node_modules\source-map-loader\
+			package.json'
+			npm WARN @ngtools/webpack@1.3.1 requires a peer of webpack@^2.2.0 but none was installed.
+			npm WARN extract-text-webpack-plugin@2.1.2 requires a peer of webpack@^2.2.0 but none was installed.
+			npm WARN webpack-dev-server@2.4.5 requires a peer of webpack@^2.2.0 but none was installed.
+			PS C:\Dalton\udemy\Angular 4\meat-app-starter>
+					
+				npm i fsevents@^1.0.0	
+				
+			--procedimento
+				npm uninstall -g angular-cli
+				npm uninstall --save-dev angular-cli
+				
+				npm uninstall -g @angular/cli
+				npm cache clean
+				# if npm version is > 5 then use `npm cache verify` to avoid errors (or to avoid using --force)
+				npm install -g @angular/cli@latest
+				
+				rm -rf node_modules dist # use rmdir /S/Q node_modules dist in Windows Command Prompt; use rm -r -fo node_modules,dist in Windows PowerShell
+				npm install --save-dev @angular/cli@latest
+				npm install
+				
+Personalizando a construção com variáveis de ambiente Seção 10 Aula 96 	
+	Podemos personalizar as variáveis de ambiente no	
+		\meat-app-starter\angular-cli.json
+		ng build --variável de ambiente 
+			 "environments": {
+			"dev": "environments/environment.ts",
+			"prod": "environments/environment.prod.ts"
+		  }
+		exemplo ng build --dev
+	
+	Definir variáveis de ambiente
+		\meat-app-starter\src\environments\environment.ts
+		
+	Endereço de produção
+		\meat-app-starter\src\app\app.api.ts
+
+	testando o build na pasta teste-build
+		C:\Dalton\udemy\Angular 4\Teste-Build\meat-app-starter
+			ng build --prod
+			
+	ng serve --prod
+		você pode testar o build desta forma para verificar as configurações do outros ambientes
+	
+	environment.prod.ts possui apenas localhost
+	app.api fazemos apenas referencia ao environment.api
+			import { environment } from "../environments/environment";
+			export const MEAT_API = environment.api; //'http://localhost:3000';
+			
+
+Deploy na aplicação no apache Seção 11 Aula 97
+	*Não testei pois não instalei o apache na máquina.	
+	exemplo: https://pt.wikihow.com/Instalar-o-Apache-Web-Server-em-um-Computador-com-Windows
+	
+	
+Deploy Usando a Estratégia de caminho - Apache Seção 11 Aula 98
+	Configurar o apache
+	
+	link do curso
+		angular.io/docs/ts/latest/guide/deployment.html
+
+	Link atual
+		https://angular.io/guide/deployment
+		
+	Apache
+		sudo apache restart
+		
+	http://httpd.apache.org/docs/current/mod/core.html#directory
+	
+Deploy Usando O arquivo htacess - Apache HTTP Seção 11 Aula 99
+	https://www.udemy.com/angular-pt/learn/v4/t/lecture/7232936?start=0
+
+
+Modificando o base-href para Deploys em Subdiretórios Seção 11 Aula 99
+	publicando as API no heroku
+		Você teria que publicar em uma plataforma. O Heroku aceita aplicações em NodeJS gratuitamente.
+
+		Veja se estes links te ajudam:
+
+		1) Json-Server no Heroku: https://github.com/jesperorb/json-server-heroku
+				https://devcenter.heroku.com/articles/heroku-cli
+				
+		2) Você pode usar a pasta ./public do json-server para servir a aplicação Angular (dist) https://github.com/typicode/json-server
+
+	caso sua aplicação tenha uma pasta para o seu portal, é necessário alterar o base href no momento do build.
+		ng build --prod --bh=/meat/
+		
+Resumo do Processo de Build e Deploy Seção 11 Aula 100
+	ng build --prod --bh=/url/
+		ahead-of-time
+		irá gerar uma pasta dist
+			com conteúdo compilado e minificado
+			
+	Location Strategy
+		Path vs Hash
+		
+	Estratégia por caminho o servidor precisa retorna o index.html semple que houver um 404.
+	
+	Se o ambiente não esponhe está configuração o hash pode ser uma saida simples.
+	
+	Apache
+		HTTP.Conf altere o arquivo
+		.HTACESS adicione este arquivo no diretório raiz da aplicação.
+		
+Adicionando a Busca de Restaurantes Seção 12 Aula 101
+	Criar uma barra de buscar
+	
+Aplicando Animações na Barra de Busca Seção 13 Aula 102
+	Ocultar/aparecer a barra de pesquisa
+		
+	Reacitve form	
+			
+			 private fb: FormBuilder
+			
+					 this.searchControl = this.fb.control('');
+			  this.seachForm = this.fb.group({
+				searchControl: this.searchControl
+			  });
+
+		formControlName="searchControl"
+		[formGroup]="searchForm"
+
+Operadores debounceTime e distinctUntilChanged Seção 12 Aula 105
+			
+	{{}} - interpolação de template
+	#iptSearch Interpolação
+	
+    https://www.youtube.com/watch?v=xdehEshcTzA&feature=youtu.be&list=PLGxZ4Rq3BOBoSRcKWEdQACbUCNWLczg2G
+	https://www.npmjs.com/package/angular-lte
+	
+	https://github.com/clong365/inspinia-3
+	
+	
+Prevenindo a Interrupção do Observable ValueChanges Seção 12 Aula 106
+	Tratamento de erros com observable valuechanges	
+	Observable quando ele encontra um erro ele quebra completamente
+	
+	É diferente de um observable de http
+
+     //  .catch(error=> Observable.from())
+	
+	problema para utilizar o observable e from juntos
+		https://stackoverflow.com/questions/37400237/angular-2-import-shared-operator-for-observable
+		
+		https://loiane.com/2017/08/angular-rxjs-imports/
+		
+		
+	rxjs
+		https://loiane.com/2017/08/angular-rxjs-imports/
+		
+		
+		
+	Ver a Diretiva de focus no controle
+	https://blog.thecodecampus.de/angular-2-set-focus-element/
+			
+	Exemplos
+		https://www.npmjs.com/package/ng-autofocus
+		https://www.npmjs.com/package/ng-focus-if
+		https://www.npmjs.com/package/angular2-focus
+		
+		https://stackoverflow.com/questions/38307060/how-to-set-focus-on-element-with-binding
+		
+
+Novo Módulo de HttpClient Seção 13 Aula 107		
+	Angular 4.3
+		HttpCliente
+			
+			
+		Interceptors
+		
+		
+		Mudança no Import
+			De HttpModule '@Angular/http'  Para HttpClienteModule '@angular/common/http'
+				retorna GET, POST, DELETE, PUT ...
+				Não é mais necessário utilizar o operador Map no corpo da resposta.
+				As respostas são tipadas
+				
+			Antigo
+				restaurantById(id: string): Observable<Restaurant>{
+					return this.http.get(`restaurants/${id}`)
+									.map(response => response.json());
+								
+				}
+				Antigamente no retorno utilizavamos o operador map para transformar o body na resposta.
+				
+			Agora	
+				restaurantById(id: string): Observable<Restaurant>{
+					return this.http.get(`restaurants/${id}`)							
+				}
+				1 - Agora já temos o retorno do body automaticamente sem a utilização do operador map.
+				2 - Agora necessitamos tipar o retorno do método.
+				
+			
+			this.http.get<Restaurant[]>(`/restaurants`, {observe: 'response' })
+					  .subscribe(rests => this.rests = rests)
+
+    		Acesso a resposta, precisa ter acesso ao argumento do método 'observe'
+				restaurantById(id: string): Observable<Restaurant>{
+					.subscribe(resp => {
+						resp.headers.get('X-PageSize')//Custom header
+						this.rests = resp.body //Restaurant[]
+					})								
+			Pode se inspecionar antes de ler o valor do corpo
+			Corpo da resposta pode ser obtido da propriedade body. exemplo res.body
+
+
+Refactoring da Aplicação Seção 13 Aula 108
+	Atualizar as referências do projeto
+		https://github.com/cod3rcursos/meat-app-starter
+		
+	Versões travadas do npm
+		C:\Dalton\udemy\Angular 4\meat-app-starter\package-lock.json
+			
+	C:\Dalton\udemy\Angular 4\meat-app-starter\package.json
+		"dependencies": {
+		"@angular/animations": "4.3.3",
+		"@angular/common": "4.3.3",
+		"@angular/compiler": "4.3.3",
+		"@angular/core": "4.3.3",
+		"@angular/forms": "4.3.3",
+		"@angular/platform-browser": "4.3.3",
+		"@angular/platform-browser-dynamic": "4.3.3",
+		"@angular/router": "4.3.3",
+		"admin-lte": "2.3.11",
+		"core-js": "2.4.1",
+		"font-awesome": "4.7.0",
+		"intl": "1.2.5",
+		"jquery": "3.1.1",
+		"reflect-metadata": "0.1.10",
+		"rxjs": "5.4.2",
+		"ts-helpers": "1.1.2",
+		"web-animations-js": "2.2.5",
+		"zone.js": "0.8.16"
+	  },
+	  "devDependencies": {
+		"@angular/cli": "^1.5.0",
+		"@angular/compiler-cli": "4.3.3",
+		"@types/jasmine": "2.5.53",
+		"@types/express": "4.0.37",
+		"@types/jsonwebtoken": "7.2.3",
+		"@types/node": "7.0.5",
+		"codelyzer": "3.1.2",
+		"jasmine-core": "2.7.0",
+		"jasmine-spec-reporter": "4.1.1",
+		"json-server": "0.12.0",
+		"jsonwebtoken": "7.4.1",
+		"karma": "1.7.0",
+		"karma-chrome-launcher": "2.2.0",
+		"karma-cli": "1.0.1",
+		"karma-jasmine": "1.1.0",
+		"karma-remap-istanbul": "0.6.0",
+		"protractor": "5.1.2",
+		"ts-node": "3.3.0",
+		"tslint": "5.5.0",
+		"typescript": "2.4.2",
+		"webdriver-manager": "12.0.6"
+	  }
+	
+	Apagar a pasta C:\Dalton\udemy\Angular 4\meat-app-starter\node_modules
+	instalar novamente npm install
+	
+	Ajustar os imports
+	Service já trabalha com o envio/retorno do JSON.
+	A forma de passar parametros mudou, agora utilizamos HttpParams
+		De 
+			 restaurants(search?: string): Observable<Restaurant[]> {
+				   //Alterar restaurants para restaurants1 para gerar o erro 404 Not Found
+				return this.http.get<Restaurant[]>(`${MEAT_API}/restaurants`, {params: {q: search}});
+			   };
+	
+	resposta mudou 
+		De import {Response} from '@angular/http';  Para import {HttpErrorResponse} from '@angular/common/http';
+		
+	HttpErrorResponse
+		Body np formato json
+	
+	Antes era esperado o body como formato json
+	
+	Esse o objeto já espera o erro da resposta em formato json
+	
+	ng build
+	ng serve
+	
+Personalisando o Backend Seção 14 Aula 109
+   Personalidar o json server
+   Subir o json com https
+   ExpressJS
+   
+   https://github.com/typicode/json-server
+		Custom routes example
+			
+			
+	Criar o arquivo \meat-app-starter\backend\server.js
+		substituir a chamada 
+			De  json-server db.json 
+			Para node backend/server
+			
+	Para testar execute http://localhost:3000/
+	
+	https://expressjs.com/en/starter/hello-world.html
+		//fazer um require do module, criar o modulo
+		const express = require('express')
+		
+		//criar as rotas 
+		const app = express()
+
+		app.get('/', (req, res) => res.send('Hello World!'))
+
+		app.listen(3000, () => console.log('Example app listening on port 3000!'))
+	
+	http://localhost:3000/echo?hello=%22word%22
+	
+	//use registra os metodos para todas as rotas
+	server.use('/echo', (req, res) => {
+	  res.jsonp(req.query)
+	})
+	
+	
+	//call back middleware
+	server.use((req, res, next) => {
+	  if (req.method === 'POST') {
+		req.body.createdAt = Date.now()
+	  }
+	  // Continue to JSON Server router
+	  next()
+	})
+			
+
+	Por padrão o express não faz o parse do body, é necessário fazer manualmente ou registrar uma middle que faça.
+	Ele faz o parse do body , transforma num objeto json e associa no request.
+	
+	
+			
+	// To handle POST, PUT and PATCH you need to use a body-parser
+	// You can use the one used by JSON Server
+	server.use(jsonServer.bodyParser)
+	server.use((req, res, next) => {
+	  if (req.method === 'POST') {
+		req.body.createdAt = Date.now()
+	  }
+	  // Continue to JSON Server router
+	  next()
+	})
+
+	//router é criado dentro do json-server
+	server.use(router)
+			
+
+Utilizando Https e TypeScript Seção 14 Aula 10
+
+     converter o server.js para server.ts
+	 criar o arquivo tsconfig.json
+           compileOnSave    //Compilar os arquivos js assim que você salvar
+           compilerOptions  //Indicando o diretório que os arquivos js serão gerados
+
+
+     // Monitorar a pasta de acordo com as configuirações do tsconfig.json
+     C:\Dalton\udemy\Angular 4\meat-app-starter\backend
+	         tsc -w  
+
+   Antigo > http://localhost:3000/echo?hello=%22word%20corinsthians%22
+   Novo > https://localhost:3001
+       Pode ser que você receba um erro de segurança, devido ao tipo de certificado que estamos
+	    utilizando, para isso você deve aceitar pelo browser para se conectar mesmo não
+		 sendo um site seguro. Isso vai ocorrer apenas  em desenvolvimento
+
+    Automatizar as alterações do código do backend para isso vamos utilizar o pacote nodemon.
+	   C:\Dalton\udemy\Angular 4\meat-app-starter
+	       npm i nodemon -g
+            
+		   //Arquivo que será monitorado pelo nodemon
+           nodemon --watch backend backend/dist/server.js
+
+    Exemplo do Código
+	     https://drive.google.com/file/d/19UtKTMNZENx2X8F092eOTPrd7Ezi6ZOf/view?usp=sharing
+
+    Há uma outra maneira de iniciar sem precisar do tsc -w que não explorei nos vídeos. 
+	 É usando o ts-node.
+           Instale: npm i -g ts-node
+           Execute assim: nodemon --watch backend --exec "ts-node" backend/server.ts 
+           Dessa forma, você não vai precisar mais do tsc -w em outro terminal.
+
+   Projeto não está funcionando devido a mudança para https
+   
+
+Implementando a Rota de Login Seção 14, aula 111
+   Criar uma rota paa autenticação
+   
+
+   Criar a rota personalizada
+
+   Instalar o PostMan
+      https://www.getpostman.com/postman
+
+	  ao Abrir o postman acesse o menu setting > Aba General > e marque a opção
+	  "SSL Certificate verification"  = OFF
+	  Devido ao certificado não ser válido é necessário segui este procedimento.
+
+   postman  
+       POST 
+	   https://localhost:3001/login
+       send
+	
+	Erro 401 é um recurso protegido e você não está mandando nenhuma informação de autenticação,
+	você é anonimo e está tentando acessar uma informação que você não está autorizado.
+	Neste caso é necessário enviar o header
+
+    422 unprocessible entity
+	403 dados inválido
+
+
+Introdução ao JWT? Seção 14, aula 112
+ Token é um dado para identificar um usuário ou aplicação.
+
+ JSON WEB TOKEN JWT
+	padrão de tokens para aplicações WEB
+		identifica ou dar permissão.
+	Usa o padrão object notation para formatação.
+	Não resolve a segurança da aplicação.
+
+Identificação de uma aplicação web tradicional
+   utiliza se de cookies
+       browser > servidor
+   os cookies vem da resposta dos headers do http
+      uso do id do cookies
+	
+   Nas aplicações mobile (IOS, Android nativo) utiliza se outro padrão
+	  Diferentes aplicações podem utilizar diferentes formatos de tokens, por isso o JWT vem pra resolver isso.
+	
+Estrutura de um JWT Seção 14 Aula 113   
+	Cabeçalho (Header)
+		Escrito em JSON vão as informações do token
+			Algoritimo para assinar o token e tipo (Tipo é opcional).
+				{
+					"alg": "HS256",
+					"typ": "JWT"
+				}		
+
+	Corpo (Payload)
+		Escrito em JSON vão as informações do token
+		Corpo que carrega informações são chamados de clains, intersse da aplicação.
+			Registrados definidos pelo JWT
+
+			Publicos 		
+			  {		
+				"profile": "admin", // privados,
+				"name": "John", //privados,  
+				"sub": "user@host.com", // principal interessado, algo que identifique o usuário (portador do token)
+				"iss": "my-token-manager", //quem gerou o token, quem está emitindo o token
+				"exp": "1503183549 //tempo de expiração do token
+
+				Aplicação pode adicionar clains
+			  }
+
+			Privados	
+
+    Formato 
+		Header + token são codificados em base64 e unidos por um "ponto" .
+		Assinatura é opcional mas  se feita vai ser a terceira parte unida com um "ponto".
+			header.paylad.Signature
+				eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.HKGFTUDFUTFTUFUTUUFUTFUTftufufUTUFTUftuf.WSXSAWXWXSWSXWSXW
+
+		API AUTHO - https://auth0.com/docs/api-auth
+
+
+	Assinatura (Signature)
+
+
+Adicionando Token JWT a Rota de Login Seção 14, aula 114
+	https://angular.io/guide/http#security-xsrf-protection
+	https://angular.io/guide/security
+
+	http://www.yiiframework.com/extension/yii-jwt
+	http://websecurityinfo.blogspot.com.br/2017/06/base64-encoding-vs-base64url-encoding.html
+
+   //Para validar o token
+	https://jwt.io/
+
+		No campo Enconded colocar:
+			eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqdWxpYW5hQGdtYWlsLmNvbSIsImlzcyI6Im1lYXQtYXBpIiwiaWF0IjoxNTEyMDkyMTIzfQ.EtMzswNSHnvi2g0N354zoBHbJzPuvvKrwIut4y9IIPo         
+
+		No VERIFY SIGNATURE substituir 
+			secret para meat-api-password
+
+
+	npm i ecdsa-sig-formatter@1.0.9 --save-dev 
+
+    C:\Dalton\udemy\Angular 4\meat-app-starter\package.json
+		   "jsonwebtoken": "7.4.1",
+		   "@types/jsonwebtoken": "7.2.3", // Auto Complete dos métodos
+		
+
+MiddleWare de Autorização Seção 14, Aula 115
+	https://stackoverflow.com/questions/40508557/multiple-layout-for-different-pages-in-angular-2/46531229#46531229
+	http://www.tech-coder.com/2017/01/multiple-master-pages-in-angular2-and.html
+	https://github.com/kalpeshsatasiya/MasterPagesInAngular2
+	
+	https://enable-cors.org/server_expressjs.html
+
+    postman	
+		get https://localhost:3000/orders
+		   body 
+		   	   {
+					"message": "Você precisa se autenticar"
+		       }
+
+		  Na aba Headers se espera um JWT para se autenticar.
+		      WWW-Authenticate →Bearer token_type="JWT"
+       
+	    Vamos alterar esse recurso para acessar de forma protegida.
+		   Vá no serviço  
+		      post https://localhost:3000/login
+			       {
+						"name": "Juliana",
+						"email": "juliana@gmail.com",
+						"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqdWxpYW5hQGdtYWlsLmNvbSIsImlzcyI6Im1lYXQtYXBpIiwiaWF0IjoxNTEyMjY4OTU4fQ.x25nyxhbgk-gV2hH_bNoZEQmSJK-ouRkuOey7XhkVm0"
+					}
+
+
+		No serviço order adicione uma key e um value (Bearer + espaço + token) e execute o serviço novamente
+		   Key: Authorization
+		   Value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqdWxpYW5hQGdtYWlsLmNvbSIsImlzcyI6Im1lYXQtYXBpIiwiaWF0IjoxNTEyMjY4OTU4fQ.x25nyxhbgk-gV2hH_bNoZEQmSJK-ouRkuOey7XhkVm0
+
+	    próximo passo criar o login e passar as informações do token nos serviços.
+		portal não está funcionando até a implementação do token.
+
+       https://enable-cors.org/server_expressjs.html
+
+       https://pt.wikipedia.org/wiki/Wireshark
+	   https://www.howtogeek.com/104278/how-to-use-wireshark-to-capture-filter-and-inspect-packets/
+	   https://www.lifewire.com/wireshark-tutorial-4143298
+
+
+Segurança: FrontEnd -  Preparando a Pàgina de Login Seção 15 Aula 116
+   Ciar o componente de Login utilizando o backend para authenticar.
+   Criar a pasta security
+   C:\Dalton\udemy\Angular 4\meat-app-starter> ng g c security/login
+
+   copiar o login do git https://github.com/cod3rcursos/meat-app-template
+
+   http://localhost:4200/#/login
+      vamos utilizar reactive forms
+
+   porta alterada para https:localhost:3001
+
+   https://stackoverflow.com/questions/40508557/multiple-layout-for-different-pages-in-angular-2/46531229#46531229
+   https://angular-multi-layout-example.stackblitz.io/
+
+
+Criando o Componente Login Seção 15 Aula 117
+   Agora no Angular existe uma validador de email e não precisamos mais de expressão regular.
+   criação do Login e validações
+
+   Http novo já trabalha com content type application/json não pecisamos mais informar o tipo do header, já é default.
+   
+   // Template string
+   `${}`
+
+
+Realizando uma compra com Autenticação Aula 15,  Seção 119
+	Utilizando o token na compra
+
+
+Protegendo o Módulo de Compra com CanLoad Aula 15, Seção 120
+	Previnir um carregamento de uma página sem permissão
+	RouterQuards ou Quardas de rotas
+		CanLoad
+
+		Criar uma função com a mesma assinatura que tem o método da interface.
+
+		Declarar o guard como um provider que pode receber vários objetos (melhor opção). 
+
+
+	Apresentar o login primeiro
+	Teste:
+		 Entrar no site , adicionar um produto e clicar em "Fechar Pedido", resultado esperado ir para o login
+		 Ao se logar redirecionar para Fechar pedido.
+
+
+Protegendo o Componente de Compra com CanActivate Aula 15, Seção 121
+	RouteGuard CanActivate
+		CanLoad (módulo se pode carregar) pode carregar depois o CanActivate
+
+	ActivatedRouteSnapshot é a cópia da rota ativada.
+	RouterStateSnapshot caminhos de todas as rotas ativadas.
+
+
+
+	canLoad é necessário?
+		A proteção da rota não poderia ser simplificada utilizando apenas com canActivate visto que o 
+		canLoad será chamado apenas no carregamento do módulo?
+	Resposta:
+		Depende. Se o módulo tiver algum script que você considere mais sensível, apenas o o canLoad pode 
+		evitar que o código venha para o browser. Para que o canActivate seja acionado, o módulo precisa ser 
+		carregado primeiro.
+
+		Então digamos que você tem um módulo administrativo na sua aplicação. Se usar apenas o canActivate, 
+		o código do módulo vai ser carregado dando a possibilidade para pessoas, que não deveriam ter acesso,
+		 inspecionarem aquele código e fazer um engenharia reversa.
+
+		O canLoad evita isso. 
+		Uso da biblioteca em javascript	
+			btoa para encriptar o dado
+				C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\security\login\login.service.ts
+			atob para descriptar o dado	
+				C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\security\login\login.component.ts
+
+	
+Disparando o Login Manualmente Aula 15, Seção 122
+	ng g c header/user-detail --spec=false
+
+	 <ng-template #notLoggedIn>
+	 	utilizar a variável como template variavel '#notLoggedIn'
+
+    houvir o router para pegar automaticamente a rota enviar depois te efetuar o login.
+		utilizar o NavigationEnd para obter a ultima rota
+	
+		C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\security\login\login.service.ts
+		 this.router.events.filter(e => e instanceof  NavigationEnd)
+                        .subscribe( (e: NavigationEnd) => console.log(e.url) );
+
+
+    Listiner que monitora as rotas
+
+
+Implementando o Route Guard CanDeactivated na Compra Aula 15, Seção 123
+	ngOnInit e remover os listeners no ngOnDestroy
+
+	3 passos	
+		Criar a class
+		Declarar como provider
+		associar na Rota
+
+	C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\order\leave-order.guard.ts
+	C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\order\order.component.ts
+	C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\shared\shared.modules.ts
+	C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\order\order.module.ts
+
+O que são interceptors Aula 15, Seção 124?
+
+	http interceptors
+		pode se usar de 3 formas
+			Loggin
+			
+			Profiling	
+
+			Error Handling
+
+	HttpClient
+
+	Implementar uma interface HttpInterceptor
+	Implementar o método intercept
+		primeiro argumento é o intercept que pode ser alterado
+		Segundo argumento é o interceptor que representa o proximo interceptor na fila
+		Continuar a chamada, chamand o next.handle chamando o request Modificando
+
+		Para configurar o Interceptor é necessário registra lo como token.
+			HTTP_INTERCEPTORS
+		Você pode ter multiplus interceptors
+		Você pode definir a ordem dos interceptors
+		
+		Utilizar Operadores	
+			do
+			catch
+
+Utilizando HTTP Interceptors Aula 15, Seção 125
+
+	localStorage 
+		https://developer.mozilla.org/en-US/docs/Web/API/Storage
+
+
+	https://github.com/jesperorb/json-server-heroku
+
+	como fazer deploy no Heroku
+	https://www.youtube.com/watch?v=PrrSf4vSBfU
+
+	Multi valor do token
+
+	private loginService: LoginService
+	import { LoginService } from '../security/login/login.service'
+
+	C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\security\auth.interceptor.ts
+	C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\order\order.service.ts
+	C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\shared\shared.modules.ts
+
+Criando um Error Handler Global Aula 16, Seção 126
+	Não é mais static ErrorHandler
+	Todo provider que recebe um injeção precisa do injectable
+		ApplicationErrorHandler
+
+	C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\restaurants\restaurants.service.ts
+		Está com um erro devido ao teste do interceptor de erro
+		alterar
+			De	
+				return this.http.get<Restaurant[]>(`${MEAT_API}/restaurantsS`, {params: params});
+			Para
+				return this.http.get<Restaurant[]>(`${MEAT_API}/restaurants`, {params: params});	
+
+	
+
+Utilizando Zonas Aula 16, Seção 127
+
+	Zone JS  explicação de como funciona
+
+	NgZone
+	C:\Dalton\udemy\Angular 4\meat-app-starter\src\app\app.error-handler.ts
+
+	https://github.com/cod3rcursos/meat-app-final
+---------------------------------------------------------------------------------------------------------------------
+How to build
+	https://coursetro.com/posts/code/64/How-to-Deploy-an-Angular-App-(Angular-4)
+	
+	ng build 
+
+	wil create a folder 'dist'
+	C:\Dalton\udemy\Angular 4\meat-app-starter\dist
+
+	ng build --prod
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+	// Executar o portal
+	C:\Dalton\udemy\Angular 4\meat-app-starter\ng serve
+	
+	// Executar o node Backend
+	C:\Dalton\udemy\Angular 4\meat-app-starter\nodemon --watch backend backend/dist/server.js
+	
+	//Monitorar o type script para gerar javascript
+	C:\Dalton\udemy\Angular 4\meat-app-starter\backend\tsc -w
+	
+	Site: 	
+		http://localhost:4200/#/login
+			login 
+				{"email":"juliana@gmail.com","password":"juliana23"}
+				
+	PostMan:
+		POST: https://localhost:3001/login
+		BODY:
+			{
+				"name": "Juliana",
+				"email": "juliana@gmail.com",
+				"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqdWxpYW5hQGdtYWlsLmNvbSIsImlzcyI6Im1lYXQtYXBpIiwiaWF0IjoxNTEzNzM0MzY5fQ.ADaDPcEwUb0voUeSNoeVQT3OEsLNEV-_dxlV0W8-qjU"
+			}
+		Send:
+		
+		GET: https://localhost:3001/orders
+		Headers: 
+				Key: Authorization
+				Value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqdWxpYW5hQGdtYWlsLmNvbSIsImlzcyI6Im1lYXQtYXBpIiwiaWF0IjoxNTEyMjY4OTU4fQ.x25nyxhbgk-gV2hH_bNoZEQmSJK-ouRkuOey7XhkVm0
+		Send:
+		
+	---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+	
+	
+
+	
+				
